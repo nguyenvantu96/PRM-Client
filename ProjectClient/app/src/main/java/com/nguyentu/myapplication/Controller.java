@@ -4,21 +4,34 @@ import java.util.List;
 import java.util.Random;
 
 public class Controller {
-    public int checkAnwser(String anwser,String input){
+    public char[] checkAnwser(String answer, char[] guessedWord, char input) {
+        int idx = 0;
+
+        for (char character : answer.toCharArray()) {
+            if (character == input) {
+                guessedWord[idx] = character;
+            }
+            idx++;
+        }
+        return guessedWord;
+    }
+
+    public int countCorrectWord(String answer, char input) {
         int count = 0;
-        String[] data = anwser.split("");
-        for (int i=0;i < data.length;i++){
-            if(input.equals(data[i])){
+        for (char character : answer.toCharArray()) {
+            if (character == input) {
                 count++;
             }
         }
         return count;
     }
+
     public Item randomAnwser(List<Item> list){
-       int index = generateRandom(0,list.size()-1);
+       int index = generateRandom(0, list.size() - 1);
        Item currentQuestion = list.get(index);
         return currentQuestion;
     }
+
     public  int generateRandom(int min, int max) {
         Random r = new Random();
         return r.nextInt((max - min) + 1) + min;
