@@ -30,4 +30,9 @@ public class Item {
 
     public void setWhiteSpaceIdx(int whiteSpaceIdx) { this.whiteSpaceIdx = whiteSpaceIdx; }
 
+    public boolean isCompleted() {
+        String guessedWord = new String(getGuessedWord());
+        return guessedWord.replace(" ", "")
+            .equals(getAnswer().replace(" ", ""));
+    }
 }

@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         question.setText(current.getQuestion());
+        btnStart.setEnabled(false);
     }
 
     public void onClick(View view) {
@@ -110,6 +111,12 @@ public class MainActivity extends AppCompatActivity {
                 linearLayout.addView(button);
                 idx++;
             }
+
+            if (current.isCompleted()) {
+
+                list.remove(current);
+                btnStart.setEnabled(true);
+            }
         } catch (Exception e){
             e.getMessage();
         }
@@ -119,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            Toast.makeText(MainActivity.this, "Json Data is downloading", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "Đang tải câu hỏi...", Toast.LENGTH_SHORT).show();
 
         }
 
@@ -148,9 +155,9 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             Toast.makeText(getApplicationContext(),
-                                    "Data success",
+                                    "Tải hoàn tất! Chúc bạn chơi game vui vẻ!",
                                     Toast.LENGTH_LONG).show();
-                            btnStart.setEnabled(true);
+                            btnStart.performClick();
                         }
                     });
                 } catch (final Exception e) {

@@ -27,9 +27,8 @@ public class Controller {
     }
 
     public Item randomAnwser(List<Item> list){
-       int index = generateRandom(0, list.size() - 1);
-       Item currentQuestion = list.get(index);
-        return currentQuestion;
+        int index = generateRandom(0, list.size() - 1);
+        return list.get(index);
     }
 
     public  int generateRandom(int min, int max) {
